@@ -25,6 +25,54 @@
         </div>
     </div>
     
+
+        <!-- Button trigger modal -->
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+      Creditos
+    </button>
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Información</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+              <section class="mb-5">
+                <div class="row row-cols-1 row-cols-md-12 g-4">
+                    <div class="col">
+                        <div class="card h-100 border-primary">
+                            <div class="card-body">
+                                <h5 class="card-title">Datos del estudiante</h5>
+                                <p class="card-text"><strong>Nombre:</strong> Joshua Isaac Yoc Chajón</p>
+                                <p class="card-text"><strong>Carnet:</strong> 202303534</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card h-100 border-primary">
+                            <div class="card-body">
+                                <h5 class="card-title">Logos:</h5>
+                                <img src="https://radd4.virtual.usac.edu.gt/efpem/pluginfile.php/1/theme_lambda/logo/1757005937/Banner%20Campus%202.png"
+                                    alt="logos" class="img-fluid mx-auto d-block">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+              </section>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
   </body>
+
 </html>
