@@ -19,7 +19,7 @@ class EmpleadosController extends BaseController
         return view('empleados',$datos);
     }
 
-    #agregar empleados
+    #agregar empleado
    public function agregarEmpleado()
     {
         $empleados = new EmpleadosModel();
