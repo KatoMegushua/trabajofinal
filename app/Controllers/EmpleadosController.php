@@ -59,5 +59,20 @@ class EmpleadosController extends BaseController
         //enviamos los datos al formulario
         return view('form_editar_empleado',$datos);
     }
- 
+
+    #modificar empleado
+    public function modificarEmpleado(){
+        $empleados = new EmpleadosModel();
+        $datos=[
+            'nombre'=>$this->request->getPost('txt_nombre'),
+            'apellido'=>$this->request->getPost('txt_apellido'),
+            'cargo'=>$this->request->getPost('txt_cargo'),
+            'usuario'=>$this->request->getPost('txt_usuario'),
+            'contrasena'=>$this->request->getPost('txt_contra'),
+        ];
+
+        $codigo = $this->request->getPost('txt_codempleado');
+        $empleados->update($codigo, $datos);
+        return $this->index();
+    }
 }
