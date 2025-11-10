@@ -19,5 +19,25 @@ class EmpleadosController extends BaseController
         return view('empleados',$datos);
     }
 
-    
+    #agregar empleados
+   public function agregarEmpleado()
+    {
+        $empleados = new EmpleadosModel();
+
+        $datos=[
+            'id_empleado'=>$this->request->getPost('txt_codigo'),
+            'nombre'=>$this->request->getPost('txt_nombre'),
+            'apellido'=>$this->request->getPost('txt_apellido'),
+            'cargo'=>$this->request->getPost('txt_cargo'),
+            'usuario'=>$this->request->getPost('txt_usuario'),
+            'contrasena'=>$this->request->getPost('txt_contra'),
+        ];
+        //ejecuta el método insert para agregar los datos en la tabla
+        $empleados->insert($datos);
+        //ejecutamos el método index para recargar la tabla
+        return $this->index();
+    }
+
+   
+ 
 }
