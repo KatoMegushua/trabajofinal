@@ -35,5 +35,15 @@ class VentasController extends BaseController
         //ejecutamos el método index para recargar la tabla
         return $this->index();
     }
+
+    #eliminar venta
+    public function eliminarVenta($id)
+    {
+        $ventas = new VentasModel();
+        //ejecuta el método delete para eliminar los datos en la tabla
+        $ventas->delete($id);
+        //ejecutamos el método index para recargar la tabla
+        return $this->index();
+    }
    
 }
