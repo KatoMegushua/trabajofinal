@@ -69,8 +69,8 @@
                 <td> <?=$ventas['id_empleado'];?> </td>
                 <td> <?=$ventas['total'];?> </td>
                 <td>
-                    <a href="<?=base_url("eliminar_venta/").$empleados['id_venta'];?>" class="btn btn-danger" name="btn_eliminar"><i class="bi bi-trash3-fill"></i></a>
-                    <a href="<?=base_url("buscar_venta/").$empleados['id_venta'];?>" class="btn btn-success"><i class="bi bi-pencil-square"></i></a>
+                    <a href="<?=base_url("eliminar_venta/").$ventas['id_venta'];?>" class="btn btn-danger" name="btn_eliminar"><i class="bi bi-trash3-fill"></i></a>
+                    <a href="<?=base_url("buscar_venta/").$ventas['id_venta'];?>" class="btn btn-success"><i class="bi bi-pencil-square"></i></a>
                 </td>
             </tr>
             <?php
