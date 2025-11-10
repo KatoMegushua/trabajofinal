@@ -45,5 +45,17 @@ class VentasController extends BaseController
         //ejecutamos el método index para recargar la tabla
         return $this->index();
     }
+
+    #buscar venta
+    public function buscarVenta($codigo)
+    {
+        //objeto que permite usar clase ventasmodel
+        $ventas = new VentasModel();
+        //array de datos
+        //el first lo que hace es posicionarnos en el registro existente relacionado
+        $datos['datos'] = $ventas->where('id_venta',$codigo)->first();
+        //enviamos los datos al formulario
+        return view('form_editar_venta',$datos);
+    }
    
 }
