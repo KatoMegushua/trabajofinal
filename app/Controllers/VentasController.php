@@ -57,5 +57,19 @@ class VentasController extends BaseController
         //enviamos los datos al formulario
         return view('form_editar_venta',$datos);
     }
+
+    #modificar venta
+    public function modificarVenta(){
+        $ventas = new VentasModel();
+        $datos=[
+            'fecha'=>$this->request->getPost('txt_fecha'),
+            'id_empleado'=>$this->request->getPost('txt_idempleado'),
+            'total'=>$this->request->getPost('txt_total')
+        ];
+
+        $codigo = $this->request->getPost('txt_codventa');
+        $ventas->update($codigo, $datos);
+        return $this->index();
+    }
    
 }
