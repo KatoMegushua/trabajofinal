@@ -38,6 +38,14 @@ class EmpleadosController extends BaseController
         return $this->index();
     }
 
-   
+    #eliminar empleado
+   public function eliminarEmpleado($id)
+    {
+        $empleados = new EmpleadosModel();
+        //ejecuta el método delete para eliminar los datos en la tabla
+        $empleados->delete($id);
+        //ejecutamos el método index para recargar la tabla
+        return $this->index();
+    }
  
 }
