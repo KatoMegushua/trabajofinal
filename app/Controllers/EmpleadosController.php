@@ -20,7 +20,7 @@ class EmpleadosController extends BaseController
     }
 
     #agregar empleado
-   public function agregarEmpleado()
+    public function agregarEmpleado()
     {
         $empleados = new EmpleadosModel();
 
@@ -39,13 +39,25 @@ class EmpleadosController extends BaseController
     }
 
     #eliminar empleado
-   public function eliminarEmpleado($id)
+    public function eliminarEmpleado($id)
     {
         $empleados = new EmpleadosModel();
         //ejecuta el método delete para eliminar los datos en la tabla
         $empleados->delete($id);
         //ejecutamos el método index para recargar la tabla
         return $this->index();
+    }
+
+    #buscar empleado
+    public function buscarEmpleado($codigo)
+    {
+        //objeto que permite usar clase autoresmodel
+        $empleados = new EmpleadosModel();
+        //array de datos
+        //el first lo que hace es posicionarnos en el registro existente relacionado
+        $datos['datos'] = $empleados->where('id_empleado',$codigo)->first();
+        //enviamos los datos al formulario
+        return view('form_editar_empleado',$datos);
     }
  
 }
