@@ -14,7 +14,7 @@
         <div class="row">
             <div class="col-4 col-offset-4">
                 <h1>Editar Venta</h1>
-                <form action="<?=base_url('modificar_empleado')?>" method="post">
+                <form action="<?=base_url('modificar_venta')?>" method="post">
                     <label for="txt_codventa" class="form-label">Id venta:</label><!--readoly es para hacer que el campo sea solo de lectura-->
                     <input type="number" class="form-control" id="txt_codventa" name="txt_codventa" value="<?=$datos['id_venta'];?>" readonly>
                     <label for="txt_fecha" class="form-label">Fecha:</label>
