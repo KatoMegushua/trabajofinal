@@ -18,5 +18,22 @@ class VentasController extends BaseController
         //usuario va a ingresar
         return view('ventas',$datos);
     }
+
+    #agregar ventas
+    public function agregarVenta()
+    {
+        $ventas = new VentasModel();
+
+        $datos=[
+            'id_venta'=>$this->request->getPost('txt_codigo'),
+            'fecha'=>$this->request->getPost('txt_fecha'),
+            'id_empleado'=>$this->request->getPost('txt_idempleado'),
+            'total'=>$this->request->getPost('txt_total')
+        ];
+        //ejecuta el método insert para agregar los datos en la tabla
+        $ventas->insert($datos);
+        //ejecutamos el método index para recargar la tabla
+        return $this->index();
+    }
    
 }
