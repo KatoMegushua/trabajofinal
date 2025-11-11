@@ -45,6 +45,45 @@ class ProveedoresController extends BaseController {
         return $this->response->redirect(base_url('/proveedores')); 
     }
     
-    // Las funciones de Modificar, Eliminar y Buscar se añadirán en sus propias ramas.
+// ... (Dentro de la clase ProveedoresController, debajo de la función 'guardar')
+
+// FUNCIÓN 1: MUESTRA EL FORMULARIO DE MODIFICACIÓN (modificar($id))
+public function modificar($id) {
+    $modeloProveedor = new ProveedoresModel();
     
+    // Busca el registro específico por su ID
+    $datos['proveedor'] = $modeloProveedor->find($id);
+    
+    // Si no encuentra el proveedor, podría redirigir o mostrar un error.
+    if (empty($datos['proveedor'])) {
+        // Redirige a la lista si el ID no existe
+        return $this->response->redirect(base_url('/proveedores')); 
+    }
+
+    // Muestra la vista del formulario, pasando los datos encontrados
+    return view('form_modificar_proveedor', $datos);
+}
+
+// FUNCIÓN 2: RECIBE LOS DATOS DEL FORMULARIO Y ACTUALIZA (actualizar())
+public function actualizar() {
+    $modeloProveedor = new ProveedoresModel();
+    
+    // Recibe el ID oculto del formulario
+    $id = $this->request->getPost('id_proveedor');
+    
+    // Prepara el array de datos
+    $datosAActualizar = [
+        'nombre_empresa'  => $this->request->getPost('nombre_empresa'),
+        'contacto_nombre' => $this->request->getPost('contacto_nombre'),
+        'telefono'        => $this->request->getPost('telefono'),
+        'correo'          => $this->request->getPost('correo'),
+        'direccion'       => $this->request->getPost('direccion'),
+    ];
+    
+    // Ejecuta la actualización (Update) en la BD
+    $modeloProveedor->update($id, $datosAActualizar);
+    
+    // Redirige a la lista principal
+    return $this->response->redirect(base_url('/proveedores'));
+}    
 }
