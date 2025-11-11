@@ -6,16 +6,24 @@ use App\Models\AutoresModel;
 
 class AutoresController extends BaseController
 {
-    public function index(): string
-    {
-        $autores = new AutoresModel();
-        /*utilizar el método para seleccionar todos los datos de la tabla
-        'datos' es el nombre del array*/
-        $datos['datos'] = $autores->findAll();
-        //autores es una vista osea una página web a la que el 
-        //usuario va a ingresar
-        return view('autores',$datos);
+public function index(): string {
+    $modeloBitacora = new BitacorasModel();
+    
+    // 1. Revisa si el usuario está buscando algo (desde la URL con "GET")
+    $terminoBusqueda = $this->request->getGet('busqueda');
+    
+    // 2. Si hay un término de búsqueda, filtra los resultados
+    // Usamos el campo 'accion' de la tabla 'bitacora'
+    if (!empty($terminoBusqueda)) {
+        $modeloBitacora->like('accion', $terminoBusqueda);
     }
+    
+    // 3. Obtiene los datos (ya sea todos, o los filtrados)
+    $datos['bitacoras'] = $modeloBitacora->findAll();
+    
+    // 4. Muestra la vista
+    return view('bitacora_lista', $datos);
+}
     public function agregarAutor()
     {
         $autores = new AutoresModel();
