@@ -4,9 +4,20 @@ namespace App\Controllers;
 //estoy haciendo uso del archivo AutoresModel.php
 use App\Models\AutoresModel;
 
-class AutoresController extends BaseController
+class BitacorasController extends BaseController
 {
-    public function index(): string
+    public function index(): string{
+    // 1. Inicializa el Modelo de Bitácora
+        $modeloBitacora = new BitacorasModel(); // Asegúrate de que el nombre de la clase es BitacorasModel
+
+        // 2. Obtener todos los datos y guardarlos en un array
+        $datos['bitacoras'] = $modeloBitacora->findAll(); // Usamos 'bitacoras' como clave para el array
+
+        // 3. Devolver la Vista
+        // La vista debe ser un archivo que vas a crear en la carpeta 'Views', como 'bitacora_lista.php'
+        return view('bitacora_lista', $datos);
+    }
+    }
     {
         $autores = new AutoresModel();
         /*utilizar el método para seleccionar todos los datos de la tabla
