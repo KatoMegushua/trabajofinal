@@ -6,7 +6,7 @@
     <title>Login</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
   </head>
-  <body>
+  <body class="d-flex flex-column align-items-center justify-content-center vh-100 bg-light">
     <div class="container">
         <div class="row">
             <div class="col-4 offset-4">
@@ -20,6 +20,10 @@
                     <button type="submit" class="form-control btn btn-primary mt-2">
                         Iniciar sesión
                     </button>
+
+                    <button type="button" class="form-control btn btn-primary mt-2" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                      Creditos
+                    </button>
                 </form>
             </div>
         </div>
@@ -27,9 +31,7 @@
     
 
         <!-- Button trigger modal -->
-    <button type="button" class="form-control btn btn-primary mt-2" data-bs-toggle="modal" data-bs-target="#exampleModal">
-      Creditos
-    </button>
+    
 
     <!-- Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
