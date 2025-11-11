@@ -5,18 +5,28 @@ namespace App\Controllers;
 use App\Models\ProveedoresModel;
 
 class ProveedoresController extends BaseController {
-
-    // 1. FUNCION DE MOSTRAR (INDEX)
-    // Usada en la rama: feature/mostrar-proveedores
-    public function index(): string {
-        $modeloProveedor = new ProveedoresModel();
-        
-        // La funcionalidad de "Buscar" aún no está activa aquí,
-        // pero la dejaremos preparada para la siguiente rama.
-        $datos['proveedores'] = $modeloProveedor->findAll();
-        
-        // Retorna la vista de la lista de proveedores
-        return view('proveedores_lista', $datos);
+// FUNCION DE MOSTRAR (INDEX) - Ahora con Búsqueda
+public function index(): string {
+    $modeloProveedor = new ProveedoresModel();
+    
+    // 1. Revisa si el usuario está buscando algo (desde la URL con "GET")
+    $terminoBusqueda = $this->request->getGet('busqueda');
+    
+    // 2. Si hay un término de búsqueda, filtra los resultados
+    if (!empty($terminoBusqueda)) {
+        // Busca en los campos más relevantes: nombre de empresa o contacto
+        $modeloProveedor
+            ->like('nombre_empresa', $terminoBusqueda)
+            ->orLike('contacto_nombre', $terminoBusqueda);
+    }
+    
+    // 3. Obtiene los datos (ya sean todos, o los filtrados)
+    $datos['proveedores'] = $modeloProveedor->findAll();
+    
+    // 4. Muestra la vista
+    return view('proveedores_lista', $datos);
+}
+ 
     }
     
     // 2. FUNCIÓN DE AGREGAR (Muestra el formulario)
