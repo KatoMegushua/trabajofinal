@@ -1,69 +1,50 @@
 <?php
 
 namespace App\Controllers;
-//estoy haciendo uso del archivo AutoresModel.php
-use App\Models\AutoresModel;
 
-class AutoresController extends BaseController
-{
-    public function index(): string
-    {
-        $autores = new AutoresModel();
-        /*utilizar el método para seleccionar todos los datos de la tabla
-        'datos' es el nombre del array*/
-        $datos['datos'] = $autores->findAll();
-        //autores es una vista osea una página web a la que el 
-        //usuario va a ingresar
-        return view('autores',$datos);
-    }
-    public function agregarAutor()
-    {
-        $autores = new AutoresModel();
+use App\Models\ProveedoresModel;
 
-        $datos=[
-            'codigo_autor'=>$this->request->getPost('txt_codigo'),
-            'apellido'=>$this->request->getPost('txt_apellido'),
-            'nombre'=>$this->request->getPost('txt_nombre'),
-            'nacionalidad'=>$this->request->getPost('txt_nacionalidad')
-        ];
-        //ejecuta el método insert para agregar los datos en la tabla
-        $autores->insert($datos);
-        //ejecutamos el método index para recargar la tabla
-        return $this->index();
-    }
+class ProveedoresController extends BaseController {
 
-    public function eliminarAutor($id)
-    {
+    // 1. FUNCION DE MOSTRAR (INDEX)
+    // Usada en la rama: feature/mostrar-proveedores
+    public function index(): string {
+        $modeloProveedor = new ProveedoresModel();
         
-        $autores = new AutoresModel();
-        //ejecuta el método delete para eliminar los datos en la tabla
-        $autores->delete($id);
-        //ejecutamos el método index para recargar la tabla
-        return $this->index();
+        // La funcionalidad de "Buscar" aún no está activa aquí,
+        // pero la dejaremos preparada para la siguiente rama.
+        $datos['proveedores'] = $modeloProveedor->findAll();
+        
+        // Retorna la vista de la lista de proveedores
+        return view('proveedores_lista', $datos);
     }
     
-    public function buscarAutor($codigo)
-    {
-        //objeto que permite usar clase autoresmodel
-        $autores = new AutoresModel();
-        //array de datos
-        //el first lo que hace es posicionarnos en el registro existente relacionado
-        $datos['datos'] = $autores->where('codigo_autor',$codigo)->first();
-        //enviamos los datos al formulario
-        return view('form_editar_autor',$datos);
+    // 2. FUNCIÓN DE AGREGAR (Muestra el formulario)
+    // Usada en la rama: feature/agregar-proveedor
+    public function agregarProveedor() { 
+        // Retorna la vista del formulario
+        return view('form_agregar_proveedor');
     }
 
-    public function modificarAutor(){
-        $autores = new AutoresModel();
-        $datos=[
-            'apellido'=>$this->request->getPost('txt_apellido'),
-            'nombre'=>$this->request->getPost('txt_nombre'),
-            'nacionalidad'=>$this->request->getPost('txt_nacionalidad')
+    // 3. FUNCIÓN DE GUARDAR (Recibe el POST del formulario e inserta)
+    // Usada en la rama: feature/agregar-proveedor
+    public function guardar() {
+        $modeloProveedor = new ProveedoresModel(); 
+
+        // Recibe los datos del formulario (POST)
+        $datosAInsertar = [
+            'nombre_empresa'  => $this->request->getPost('nombre_empresa'),
+            'contacto_nombre' => $this->request->getPost('contacto_nombre'),
+            'telefono'        => $this->request->getPost('telefono'),
+            'correo'          => $this->request->getPost('correo'),
+            'direccion'       => $this->request->getPost('direccion'),
         ];
-
-        $codigo = $this->request->getPost('txt_codautor');
-        $autores->update($codigo, $datos);
-        return $this->index();
-
+        
+        // Inserta el registro y redirige
+        $modeloProveedor->insert($datosAInsertar);
+        return $this->response->redirect(base_url('/proveedores')); 
     }
+    
+    // Las funciones de Modificar, Eliminar y Buscar se añadirán en sus propias ramas.
+    
 }
