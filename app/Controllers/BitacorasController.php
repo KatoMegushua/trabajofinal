@@ -66,4 +66,28 @@ class AutoresController extends BaseController
         return $this->index();
 
     }
+
+    // 1. FUNCIÓN PARA MOSTRAR EL FORMULARIO
+public function agregarBitacora() { 
+    // Esto carga la vista que creaste.
+    return view('form_agregar_bitacora');
+}
+
+// 2. FUNCIÓN PARA RECIBIR Y GUARDAR LOS DATOS
+public function guardar() {
+    $modeloBitacora = new BitacorasModel(); // Inicializa el modelo
+
+    // Recibe los datos del formulario por el método POST
+    $datosAInsertar = [
+        'id_empleado' => $this->request->getPost('id_empleado'),
+        'accion'      => $this->request->getPost('accion'),
+        // La 'fecha' se debe generar automáticamente en la base de datos (CURRENT_TIMESTAMP)
+    ];
+    
+    // Inserta los datos en la base de datos
+    $modeloBitacora->insert($datosAInsertar);
+    
+    // Redirige al usuario a la lista de bitácoras (la que hiciste en la rama anterior)
+    return $this->response->redirect(base_url('/bitacora')); 
+}
 }
