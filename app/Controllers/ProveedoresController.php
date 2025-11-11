@@ -45,8 +45,6 @@ class ProveedoresController extends BaseController {
         return $this->response->redirect(base_url('/proveedores')); 
     }
     
-// ... (Dentro de la clase ProveedoresController, debajo de la función 'guardar')
-
 // FUNCIÓN 1: MUESTRA EL FORMULARIO DE MODIFICACIÓN (modificar($id))
 public function modificar($id) {
     $modeloProveedor = new ProveedoresModel();
@@ -86,4 +84,14 @@ public function actualizar() {
     // Redirige a la lista principal
     return $this->response->redirect(base_url('/proveedores'));
 }    
+// FUNCIÓN PARA ELIMINAR UN REGISTRO
+public function eliminar($id) {
+    $modeloProveedor = new ProveedoresModel();
+    
+    // Ejecuta la eliminación (Delete) en la BD usando el ID
+    $modeloProveedor->delete($id);
+    
+    // Redirige a la lista principal
+    return $this->response->redirect(base_url('/proveedores'));
+}
 }
